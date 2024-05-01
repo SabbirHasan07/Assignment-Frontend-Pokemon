@@ -6,8 +6,8 @@ export const getAllSets =  async () =>{
 
 
 
-export const getSetById = async (setId: string ) => {
-  let set = await PokemonTCG.findSetByID(setId)
+export const getSetById = async (setid: string ) => {
+  let set = await PokemonTCG.findSetByID(setid)
   return set;
 }
 
