@@ -5,6 +5,7 @@ import useSetStore from "../Store/Store";
 
 const ZusBooks: React.FC = () => {
     const { data, fetchData } = useSetStore();
+    console.log(data);
     useEffect(() => {
         getAllSets().then((allsets: Set[]) => {
             fetchData(allsets);
