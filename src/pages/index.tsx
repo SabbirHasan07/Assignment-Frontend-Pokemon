@@ -12,6 +12,7 @@ import { DehydratedState, QueryClient, dehydrate } from "@tanstack/react-query";
 import { QueryKeys } from "@/models/enums"
 import Modal from "@/components/Modal";
 import ControlledForm from "@/components/Login/Login";
+import HomeSlider from "@/components/Slider/Slider";
 
 export const getStaticProps: GetStaticProps<{ dehydratedState: DehydratedState; }> = async () => {
   console.log("I AM SERVER");
@@ -33,8 +34,9 @@ export default function (props: { serverSets: Set[] }) {
 
   const { data: sets, isLoading, isError } = useSets();
   return (
-    
-    <div className="grid grid-cols-4 px-3 flex-wrap h-screen overflow-y-scroll" >
+    <>
+    <HomeSlider/>
+    <div className="grid grid-cols-4 px-3 flex-wrap" >
       {isLoading && "Loading...."}
       {sets?.map((set) => {
         return (
@@ -52,6 +54,7 @@ export default function (props: { serverSets: Set[] }) {
       })}
       {isError && "Error"}
     </div>
+    </>
   );
 
 }

@@ -38,13 +38,13 @@ import {useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(new QueryClient());
-  const ReactQueryDevtoolsProduction = lazy(() =>
-    import('@tanstack/react-query-devtools/build/modern/production.js').then(
-      (d) => ({
-        default: d.ReactQueryDevtools,
-      }),
-    ),
-  )
+  // const ReactQueryDevtoolsProduction = lazy(() =>
+  //   import('@tanstack/react-query-devtools/build/modern/production.js').then(
+  //     (d) => ({
+  //       default: d.ReactQueryDevtools,
+  //     }),
+  //   ),
+  // )
 
   const [showDevtools, setShowDevtools] = useState(false);
   useEffect(() => {
@@ -53,26 +53,22 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [])
   
   return (
-
-  
-  
   <QueryClientProvider client={queryClient}>
       <HydrationBoundary state={pageProps.dehydratedState}>
       <AppContextWithReducer>
-
           <Header></Header>
-          <main className="h-screen">
+          <main >
           <Component {...pageProps} />
           </main>
-          <Footer></Footer>
+        <Footer/>
         </AppContextWithReducer>
       </HydrationBoundary>
       <ReactQueryDevtools initialIsOpen />
-      {showDevtools && (
+      {/* {showDevtools && (
         <Suspense fallback={null}>
           <ReactQueryDevtoolsProduction />
         </Suspense>
-      )}
+      )} */}
 </QueryClientProvider>
 
 )

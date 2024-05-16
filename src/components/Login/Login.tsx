@@ -1,15 +1,30 @@
+import useLogin from "@/pages/Store/useLogin";
+import { useRouter } from "next/router";
 import { FormEvent } from "react";
 import React, { useState } from "react";
 const ControlledForm = () => {
+    const [error,setError] = useState<boolean>(false);
+    const router = useRouter();
+    const {updateLogin,previousUsername} = useLogin();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        console.log(name, password);
+        console.log(name,password)
+        if(name == "Codecamp" && password=="123")
+            {
+                updateLogin("Log out");
+                previousUsername();
+                router.push("/");
+            }
+            else{
+                setError(true);
+            }
+           
     }
-    return <div className="flex justify-center mx-auto mt-32">
-        <form className=" p-5 bg-gray-500" onSubmit={submitHandler}>
+    
+    return <div className="flex justify-center mx-auto mt-32 ">
+        <form className=" p-5 bg-gray-500 rounded-md" onSubmit={submitHandler}>
             <div className="mb-3">
                 <label className="input input-bordered flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" /></svg>
@@ -29,6 +44,7 @@ const ControlledForm = () => {
             </div>
             <button type="submit" className="btn">Login</button>
         </form>
+        <p>{error && "Name or Password not Correct"}</p>
 
 
     </div>
