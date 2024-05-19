@@ -1,8 +1,4 @@
 //import {Header} from "@/components/Header";
-import { BookList } from "@/components/BookList";
-
-import { WindowSizeComponent } from "@/components/WindowSizeComponent";
-import { useState, useEffect } from "react";
 import { getAllSets } from "@/service/pokemon.service";
 import { Set } from "pokemon-tcg-sdk-typescript/dist/sdk";
 import Image from "next/image"
@@ -11,7 +7,7 @@ import { useSets } from "@/hooks/react-query-hooks";
 import { DehydratedState, QueryClient, dehydrate } from "@tanstack/react-query";
 import { QueryKeys } from "@/models/enums"
 import Modal from "@/components/Modal";
-import ControlledForm from "@/components/Login/Login";
+
 import HomeSlider from "@/components/Slider/Slider";
 
 export const getStaticProps: GetStaticProps<{ dehydratedState: DehydratedState; }> = async () => {
